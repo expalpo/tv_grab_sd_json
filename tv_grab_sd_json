@@ -1007,6 +1007,9 @@ sub get_channel_number {
 	elsif($map->{'atscMajor'}) {
 		return "$map->{'atscMajor'}_$map->{'atscMinor'}";
 	}
+	elsif($map->{'channelMinor'}) {
+		return "$map->{'channel'}_$map->{'channelMinor'}";
+	}
 	elsif($map->{'channel'}) {
 		return $map->{'channel'};
 	}
