@@ -1047,7 +1047,7 @@ sub write_channel {
 	# name, callsign and channel number. We follow that scheme here.
 	$ch{'id'} = sprintf($channel_id_format, $channel->{'stationID'});
 	$ch{'display-name'} = [
-		[sprintf("%s %s", get_channel_number($map) || 'unknown number', $channel->{'name'} || 'unknown name']
+		[sprintf("%s %s", get_channel_number($map) || 'unknown number', $channel->{'name'} || 'unknown name')]
 	];
 
 	my $logo = $channel->{'logo'};
