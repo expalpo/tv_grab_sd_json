@@ -1005,7 +1005,7 @@ sub get_channel_number {
 		return $map->{'virtualChannel'};
 	}
 	elsif($map->{'atscMajor'}) {
-		return "$map->{'atscMajor'}_$map->{'atscMinor'}";
+		return sprintf("%d.%d",$map->{'atscMajor'}, $map->{'atscMinor'});
 	}
 	elsif($map->{'channelMinor'}) {
 		return sprintf("%d.%d",$map->{'channel'}, $map->{'channelMinor'});
@@ -1047,12 +1047,11 @@ sub write_channel {
 	# name, callsign and channel number. We follow that scheme here.
 	$ch{'id'} = sprintf($channel_id_format, $channel->{'stationID'});
 	$ch{'display-name'} = [
+		[ get_channel_number($map) || 'unknown number'   ],
 		[ $channel->{'name'}       || 'unknown name'     ],
-		[ $channel->{'callsign'}   || 'unknown callsign' ],
-		[ get_channel_number($map) || 'unknown number'   ]
+		[ $channel->{'callsign'}   || 'unknown callsign' ]
 	];
 
-	$ch{'lcs'} = get_channel_number($map);
 	my $logo = $channel->{'logo'};
 	my $icon = get_icon($logo->{'URL'}, $logo->{'width'}, $logo->{'height'});
 	$ch{'icon'} = $icon if $icon;
